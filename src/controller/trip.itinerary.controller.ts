@@ -1,4 +1,4 @@
-import CustomError from '../utills/Error';
+import CustomError from '../utills/error';
 import { Controller, SuccessResponse } from '@tsoa/runtime';
 import { Post, Body, Route, Tags } from "tsoa";
 import { ITripItinerarySaveReq } from '../types/request/trip.itinerary.request';
