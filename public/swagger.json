@@ -1,0 +1,394 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"ISaveUpdateResBuss": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"bussName": {
+						"type": "string"
+					},
+					"bussSeats": {
+						"type": "string"
+					},
+					"bussBokingDates": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"createdAt": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"bussName",
+					"bussSeats",
+					"bussBokingDates",
+					"createdAt",
+					"updatedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IGetReqBuss": {
+				"properties": {
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ISaveReqBuss": {
+				"properties": {
+					"bussName": {
+						"type": "string"
+					},
+					"bussSeats": {
+						"type": "string"
+					},
+					"bussBokingDates": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"bussName",
+					"bussSeats",
+					"bussBokingDates"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUpdateReqBuss": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"bussName": {
+						"type": "string"
+					},
+					"bussSeats": {
+						"type": "string"
+					},
+					"bussBokingDates": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"_id",
+					"bussName",
+					"bussSeats",
+					"bussBokingDates"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"_LeanDocument__LeanDocument_T__": {
+				"properties": {},
+				"type": "object"
+			},
+			"Pick__LeanDocument_T_.Exclude_keyof_LeanDocument_T_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested__": {
+				"properties": {
+					"_id": {
+						"$ref": "#/components/schemas/_LeanDocument__LeanDocument_T__",
+						"description": "This documents _id."
+					},
+					"__v": {
+						"description": "This documents __v."
+					},
+					"id": {
+						"description": "The string version of this documents _id."
+					}
+				},
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit__LeanDocument_this_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested_": {
+				"$ref": "#/components/schemas/Pick__LeanDocument_T_.Exclude_keyof_LeanDocument_T_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"LeanDocument_this_": {
+				"$ref": "#/components/schemas/Omit__LeanDocument_this_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested_"
+			},
+			"IBUSS": {
+				"$ref": "#/components/schemas/LeanDocument_this_"
+			},
+			"IDeleteReqBuss": {
+				"properties": {
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ITripItinerarySaveReq": {
+				"properties": {
+					"destination": {
+						"type": "string"
+					},
+					"startDate": {
+						"type": "string",
+						"enum": [
+							"yyyy-mm-dd"
+						],
+						"nullable": false
+					},
+					"tourpassenger": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"destination",
+					"startDate",
+					"tourpassenger"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"api_keyjwt": {
+				"type": "http",
+				"name": "access_token",
+				"in": "header",
+				"scheme": "Bearer"
+			},
+			"api_key": {
+				"type": "apiKey",
+				"name": "access_token",
+				"in": "query"
+			}
+		}
+	},
+	"info": {
+		"title": "webapi",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/Buss/getBussById": {
+			"post": {
+				"operationId": "GetBuss",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ISaveUpdateResBuss"
+								}
+							}
+						}
+					}
+				},
+				"summary": "This will get busses to the system by id",
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IGetReqBuss"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Buss/AddBuss": {
+			"post": {
+				"operationId": "SaveBuss",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ISaveUpdateResBuss"
+								}
+							}
+						}
+					}
+				},
+				"summary": "This will add new buses to the system",
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ISaveReqBuss"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Buss/updateBussDetail": {
+			"put": {
+				"operationId": "UpdateBuss",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ISaveUpdateResBuss"
+								}
+							}
+						}
+					}
+				},
+				"summary": "This will update buses to the system",
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUpdateReqBuss"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Buss/deleteBuss": {
+			"delete": {
+				"operationId": "DeletBuss",
+				"responses": {
+					"200": {
+						"description": "Buss deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IBUSS"
+								}
+							}
+						}
+					}
+				},
+				"summary": "This will delete buses to the system",
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IDeleteReqBuss"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Buss/getBussList": {
+			"get": {
+				"operationId": "GetBussList",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ISaveUpdateResBuss"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"summary": "This will get buses to the system",
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/tour/registerTour": {
+			"post": {
+				"operationId": "RegisterTrip",
+				"responses": {
+					"200": {
+						"description": "Tour registered successfully",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Register your tour request here.\r\nreturns registered tour",
+				"summary": "\"Open API to Register for a tour\"",
+				"tags": [
+					"Tour"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ITripItinerarySaveReq"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
